@@ -23,7 +23,7 @@ def copytree(src, dst, symlinks=False):
                 copytree(srcname, dstname, symlinks)
             else:
                 copy2(srcname, dstname)
-            # XXX What about devices, sockets etc.?
+            # XXX What about devices, sockets et
         except OSError as why:
             errors.append((srcname, dstname, str(why)))
         # catch the Error from the recursive copytree so that we can

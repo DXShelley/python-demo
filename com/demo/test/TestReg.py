@@ -1,0 +1,106 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# @Time  : 2020/7/30 18:21
+# @Author: yuzq
+# @File  : TestReg
+
+
+if __name__ == '__main__':
+    import re
+
+    # phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+    phoneNumRegex = re.compile(r'(\d\d\d)-(\d\d\d-\d\d\d\d)')
+    mo = phoneNumRegex.search('My number is  123-456-7890')
+    print(mo)
+    print(mo.group())
+    print(mo.group(0))
+    print(mo.group(1))
+    print(mo.group(2))
+
+    print(mo.groups())
+    print('---------------------------------------------------------')
+
+    heroRegex = re.compile(r'Batman|Tina Fey')
+    mo1 = heroRegex.search('Batman and Tina Fey.')
+    print(mo1.group())
+    print(mo1.groups())
+
+    mo2 = heroRegex.search('Tina Fey and Batman.')
+    print(mo2.group())
+
+    mo3 = heroRegex.findall('Tina Fey and Batman.')
+    print(mo3)
+    print('---------------------------------------------------------')
+    batRegex = re.compile(r'Bat(wo)?man')
+    mo1 = batRegex.search('The Adventures of Batman  and Batwoman ')
+    mo2 = batRegex.search('The Adventures Batwoman of Batman  and Batwoman ')
+    mo3 = batRegex.findall('The Adventures Batwoman of Batman  and Batwoman ')
+    print(mo1.group())
+    print(mo2.group())
+    print(mo3)
+
+    print('---------------------------------------------------------')
+    batRegex = re.compile(r'Bat(wo)*man')
+    mo1 = batRegex.search('The Adventures of Batman  and Batwowowoman ')
+    mo2 = batRegex.search('The Adventures Batwowoman of Batman  and Batwoman ')
+    mo3 = batRegex.findall('The Adventures Batwoman of Batman  and Batwowowowoman ')
+    print(mo1.group())
+    print(mo2.group())
+    print(mo3)
+
+    print('---------------------------------------------------------')
+    batRegex = re.compile(r'Bat(wo)+man')
+    mo1 = batRegex.search('The Adventures of Batman  and Batwowowoman ')
+    mo2 = batRegex.search('The Adventures  of Batman  and Batwoman ')
+    mo3 = batRegex.findall('The Adventures Batwoman of Batman  and Batwowowowoman ')
+    print(mo1.group())
+    print(mo2.group())
+    print(mo3)
+    print('---------------------------------------------------------')
+    haRegex = re.compile(r'(Ha){3}')
+    mo1 = haRegex.search('HaHaHa')
+    mo2 = haRegex.search('HaHaHaHa')
+    print(mo1.group())
+    print(mo2.group())
+    print('---------------------------------------------------------')
+    greedyHaRegex = re.compile(r'(Ha){3,5}')
+    mo1 = greedyHaRegex.search('HaHaHaHaHaHaHaHa')
+    print(mo1.group())
+    nongreedyHaRegex = re.compile(r'(Ha){3,5}?')
+    mo2 = nongreedyHaRegex.search('HaHaHaHaHaHaHaHa')
+    print(mo2.group())
+
+    print('---------------------------------------------------------')
+
+    xmasRegex = re.compile(r'\d+\s\w+')
+    xmas = xmasRegex.findall('12 drummers, 11 pipers, 10 lords, 9 ladies, 8 maids, 7 swans, 6 geese, 5 rings, 4 birds, 3 hens, 2 doves, 1 partridge')
+    print(xmas)
+    print('---------------------------------------------------------')
+    beginsWithHello = re.compile(r'^Hello')
+    search = beginsWithHello.search('Hello,World')
+    search2 = beginsWithHello.search('DDDDHello,World')
+    print(search.group())
+    print(search2)
+    print('---------------------------------------------------------')
+    atRegex = re.compile(r'.at')
+    print(atRegex.findall('The cat in the hat sat on the flat mat.'))
+    print('---------------------------------------------------------')
+    nameRegex = re.compile(r'First Name: (.*) Last Name: (.*)')
+    mo = nameRegex.search('First Name: Alsdfsdfsdfsd Last Name: Sweigadfsdfsdfrt')
+    print(mo.groups())
+    print('---------------------------------------------------------')
+    nongreedyRegex = re.compile(r'<.*?>')
+    mo = nongreedyRegex.search('<To serve man> for dinner.>')
+    print(mo.group())
+    greedyRegex = re.compile(r'<.*>')
+    mo1 = greedyRegex.search('<To serve man> for dinner>')
+    print(mo1.group())
+    print('---------------------------------------------------------')
+    regex = re.compile(r'robocop', re.I)
+    regex_search = regex.findall('RoboCop is part robocop, part ROBOCOP, all cop.')
+    print(regex_search)
+
+    print('---------------------------------------------------------')
+    namesRegex = re.compile(r'Agent \w+')
+    print(namesRegex.sub('CENSORED', 'Agent Alice gave the secret documents to Agent Bob.'))
+
