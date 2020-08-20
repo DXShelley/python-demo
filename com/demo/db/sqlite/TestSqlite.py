@@ -14,7 +14,7 @@ if __name__ == '__main__':
     # cursor.execute(create_table)
     insert_table = '''INSERT INTO stocks VALUES ('2006-01-05','BUY','RHAT',100,35.14)'''
     # cursor.execute(insert_table)
-    # connect.commit()
+    # con.commit()
 
     select_table = '''SELECT * FROM stocks WHERE symbol=?;'''
     # 这里传参使用元组
@@ -26,8 +26,8 @@ if __name__ == '__main__':
                  ('2006-04-06', 'SELL', 'IBM', 500, 53.00),
                  ]
     insert_tables = '''INSERT INTO stocks VALUES (?,?,?,?,?);'''
-    # cursor.executemany(insert_tables,purchases)
-    # connect.commit()
+    cursor.executemany(insert_tables,purchases)
+    con.commit()
 
     delete_table = '''delete from stocks where symbol = "IBM"'''
     cursor.execute(delete_table)
