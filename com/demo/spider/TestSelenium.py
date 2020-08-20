@@ -11,10 +11,14 @@ logging.basicConfig(level=logging.DEBUG)
 if __name__ == '__main__':
     firefox = webdriver.Firefox()
     logging.debug('--驱动类型---' + str(type(firefox)))
-    # firefox.get('http://localhost:9090')
-    firefox.get('http://inventwithpython.com')
+    firefox.get('http://localhost:9090')
+    # firefox.get('http://inventwithpython.com')
     try:
-        elem = firefox.find_element_by_class_name('display-3')
-        print('Found <%s> element with that class name!' % (elem.tag_name))
+        # elem = firefox.find_element_by_class_name('display-3')
+        elem = firefox.find_element_by_id('index-menu')
+        print(elem.text)
+        # print('Found <%s> element with that class name!' % (elem.tag_name))
     except:
         print('Was not able to find an element with that name.')
+    finally:
+        firefox.close()
