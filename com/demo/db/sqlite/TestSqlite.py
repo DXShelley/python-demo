@@ -6,8 +6,8 @@
 import sqlite3
 
 if __name__ == '__main__':
-    connect = sqlite3.connect('example.db')
-    cursor = connect.cursor()
+    con = sqlite3.connect('example.db')
+    cursor = con.cursor()
 
     create_table = '''CREATE TABLE stocks
              (date text, trans text, symbol text, qty real, price real)'''
@@ -31,15 +31,17 @@ if __name__ == '__main__':
 
     delete_table = '''delete from stocks where symbol = "IBM"'''
     cursor.execute(delete_table)
-    connect.commit()
+    con.commit()
 
     # print(cursor.fetchall())
-    update_table = '''UPDATE stocks SET qty = 444 WHERE date = '2006-04-05' AND trans = 'BUY' AND symbol = 'MSFT' AND qty = 123 AND price = 72;'''
+    update_table = '''UPDATE stocks SET qty = 555 WHERE date = '2006-04-05' AND trans = 'BUY' AND symbol = 'MSFT' AND qty = 444 AND price = 72;'''
     cursor.execute(update_table)
-    connect.commit()
+    print(cursor.rowcount)
+    con.commit()
 
     select_tables = '''SELECT * FROM stocks ORDER BY price'''
     cursor.execute(select_tables)
     for item in cursor.fetchall():
         print(item)
-    connect.close()
+    cursor.close()
+    con.close()
