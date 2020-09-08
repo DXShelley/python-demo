@@ -20,10 +20,9 @@ logging.basicConfig(level=logging.DEBUG)
 
 def get_html_content(url):
     proxy_list = {
-        'http': '114.103.104.113:4216',
-        'http': '114.239.171.181:4216',
-        'http': '89.223.20.202:5836',
-
+        'http': '49.89.109.116:4216',
+        'http': '175.6.66.48:3128',
+        'http': '60.169.192.10:53315',
     }
     # 收集到的常用Header
     my_headers = [
@@ -66,10 +65,9 @@ def get_html_elements(text, selectors):
 def download_image(url, fname=None):
     try:
         proxy_list = {
-            'http': '114.103.104.113:4216',
-            'http': '114.239.171.181:4216',
-            'http': '89.223.20.202:5836',
-
+            'http': '49.89.109.116:4216',
+            'http': '175.6.66.48:3128',
+            'http': '60.169.192.10:53315',
         }
 
         # 收集到的常用Header
